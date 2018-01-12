@@ -19,11 +19,11 @@ namespace tutorHut.Classes
         public bool Status { get { return status; } set { status = value; } }
         public bool AcceptRequest(string token)
         {
-            if (token == "Accept")
+            if (token == "accept")
             {
                 status = true;
             }
-            else if (token == "Decline")
+            else if (token == "decline")
             {
                 status = false;
             }
