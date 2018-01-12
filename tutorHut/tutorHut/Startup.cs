@@ -27,7 +27,7 @@ namespace tutorHut
                 role.Name = "Admin";
                 RoleManager.Create(role);
                 var user = new ApplicationUser();
-                user.UserName = "tfdoyleiv";
+                user.UserName = "admin";
                 user.Email = "tfdoyleiv@gmail.com";
                 string userPWD = "J0hnM@u$";
                 var checkUser = UserManager.Create(user, userPWD);
@@ -36,16 +36,22 @@ namespace tutorHut
                     var result = UserManager.AddToRole(user.Id, "Admin");
                 }
             }
-            if (!RoleManager.RoleExists("Employee"))
+            if (!RoleManager.RoleExists("Student"))
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = "Employee";
+                role.Name = "Student";
                 RoleManager.Create(role);
             }
-            if (!RoleManager.RoleExists("Client"))
+            if (!RoleManager.RoleExists("Parent"))
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = "Client";
+                role.Name = "Parent";
+                RoleManager.Create(role);
+            }
+            if (!RoleManager.RoleExists("Tutor"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "Tutor";
                 RoleManager.Create(role);
             }
         }
