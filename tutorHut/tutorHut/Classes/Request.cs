@@ -10,11 +10,24 @@ namespace tutorHut.Classes
     {
         private Subject subject = new Subject();
         private Address location = new Address();
+        private bool status;
         [Key]
         public int ID { get; set; }
         public DateTime Time { get; set; }
         public Subject Subject { get { return subject; } set { subject = value; } }
         public Address Location { get { return location; } set { location = value; } }
-        public bool Status { get; set; }
+        public bool Status { get { return status; } set { status = value; } }
+        public bool AcceptRequest(string token)
+        {
+            if (token == "Accept")
+            {
+                status = true;
+            }
+            else if (token == "Decline")
+            {
+                status = false;
+            }
+            return status;
+        }
     }
 }
