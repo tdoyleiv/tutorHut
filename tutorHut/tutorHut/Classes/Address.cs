@@ -8,10 +8,10 @@ namespace tutorHut
 {
     public class Address
     {
-        public Street street = new Street();
-        public City city = new City();
-        public State state = new State();
-        public ZIP zip = new ZIP();
+        private Street street = new Street();
+        private City city = new City();
+        private State state = new State();
+        private ZIP zip = new ZIP();
         [Key]
         public int ID { get; set; }
         public Street StreetAddress { get { return street; } set { street = value; } }

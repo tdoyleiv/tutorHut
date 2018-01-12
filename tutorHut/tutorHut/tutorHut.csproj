@@ -197,8 +197,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Classes\City.cs" />
+    <Compile Include="Classes\Request.cs" />
     <Compile Include="Classes\State.cs" />
     <Compile Include="Classes\Street.cs" />
+    <Compile Include="Classes\Subject.cs" />
     <Compile Include="Classes\ZIP.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
