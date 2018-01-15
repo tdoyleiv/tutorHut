@@ -7,8 +7,8 @@ namespace tutorHut
 {
     public class Street
     {
-        public int ID { get; set; }
-        public string StreetNumber { get; set; }
-        public string StreetName { get; set; }
+        //public int ID { get; set; }
+        //public string StreetNumber { get; set; }
+        //public string StreetName { get; set; }
     }
 }

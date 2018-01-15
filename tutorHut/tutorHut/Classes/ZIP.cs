@@ -8,8 +8,8 @@ namespace tutorHut
 {
     public class ZIP
     {
-        [Key]
-        public int ID { get; set; }
-        public string code { get; set; }
+        //[Key]
+        //public int ID { get; set; }
+        //public string code { get; set; }
     }
 }
