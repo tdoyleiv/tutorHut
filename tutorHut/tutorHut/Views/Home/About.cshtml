@@ -1,7 +1,12 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "Learn about tutorhut";
+}
+@{ 
+    ViewBag.Message = "A DarkLight Solutions joint";
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
-<p>TutorHut is an interactive .</p>
+<p><b>tutorHut</b> is a digital village connecting students to tutors respective of their needs and level of education in their local area. Born out of academic necessity by the founders of DarkLight Solutions, Tom Doyle & Lance Yang, <b>tutorHut</b> is an simple interface streamlining the process of connecting teachers to learners everywhere. Start building your hut today.</p>
+<br />
+<p>@Html.ActionLink("Build your hut", "Index", "Manage", null, new { @class = "btn btn-success btn-lg" })</p>

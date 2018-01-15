@@ -2,26 +2,26 @@
     ViewBag.Title = "Home";
 }
 
-<div class="jumbotron">
+<div style="background-color: #d5f5e3 !important"class="jumbotron">
     <h1>tutorHut</h1>
     <p class="lead">Virtually all nomadic peoples throughout history have built huts to shelter and gather together on their journeys. Building a tutorHut allows students and tutors to connect on their shared journey of education.</p>
-    <p>@Html.ActionLink("Build your hut", "Index", "Manage", null, new { @class = "btn btn-primary btn-lg" })</p>
+    <p>@Html.ActionLink("Build your hut", "Index", "Manage", null, new { @class = "btn btn-success btn-lg" })</p>
 </div>
 
 <div class="row">
     <div class="col-md-4">
         <h2>Getting started</h2>
         <p>Start a new search for a tutor near you. </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <p>@Html.ActionLink("Search our village", "Index", "Manage", null, new { @class = "btn btn-success btn-lg"})</p>
     </div>
     <div class="col-md-4">
-        <h2>Profile Manager</h2>
+        <h2>Hut Manager</h2>
         <p>Edit your profile & manage your tutor requests.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        <p>@Html.ActionLink("Upkeep your hut", "Index", "Manage", null, new { @class = "btn btn-success btn-lg" })</p>
     </div>
     <div class="col-md-4">
         <h2>Meetups</h2>
-        <p>View your appointments.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        <p>View your confirmed appointments.</p>
+        <p>@Html.ActionLink("See Conferences", "Index", "Manage", null, new { @class = "btn btn-success btn-lg" })</p>
     </div>
 </div>
