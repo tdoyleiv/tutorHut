@@ -1,5 +1,9 @@
 ﻿body {
-    background-color:  #85c1e9;
+    background-image: url(20180111_110019.jpg);
+    background-size: 1925px 1200px;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
     padding-top: 50px;
     padding-bottom: 20px;
 }
