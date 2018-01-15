@@ -25,6 +25,11 @@ namespace tutorHut.Models
         {
         }
 
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<Subject> Subjects { get; set; }
+        public DbSet<Profile> Profiles { get; set; }
+        public DbSet<Request> Requests { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

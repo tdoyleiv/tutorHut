@@ -8,8 +8,8 @@ namespace tutorHut
 {
     public class State
     {
-        [Key]
-        public int ID { get; set; }
-        public string Name { get; set; }
+        //[Key]
+        //public int ID { get; set; }
+        //public string Name { get; set; }
     }
 }
