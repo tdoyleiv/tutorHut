@@ -9,7 +9,7 @@ namespace tutorHut.Migrations
         {
             AddColumn("dbo.Requests", "ProfileId", c => c.Int(nullable: false));
             CreateIndex("dbo.Requests", "ProfileId");
-            AddForeignKey("dbo.Requests", "ProfileId", "dbo.Profiles", "ProfileId", cascadeDelete: true);
+            AddForeignKey("dbo.Requests", "ProfileId", "dbo.Profiles", "ProfileId", cascadeDelete: false);
         }
         
         public override void Down()

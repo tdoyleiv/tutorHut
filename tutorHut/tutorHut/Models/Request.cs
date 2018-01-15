@@ -8,6 +8,7 @@ using System.Web;
 namespace tutorHut.Models
 {
     [Table("Requests")]
+
     public class Request
     {
         [Key]
@@ -30,7 +31,6 @@ namespace tutorHut.Models
 
         [Display(Name = "Status")]
         public string Status { get; set; }
-
 
     }
 }
