@@ -190,22 +190,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Address.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Classes\City.cs" />
-    <Compile Include="Classes\Request.cs" />
     <Compile Include="Classes\State.cs" />
     <Compile Include="Classes\Street.cs" />
-    <Compile Include="Classes\Subject.cs" />
     <Compile Include="Classes\ZIP.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AddressController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\RequestController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -222,12 +223,19 @@
     <Compile Include="Migrations\201801151435210_AddNewTables.Designer.cs">
       <DependentUpon>201801151435210_AddNewTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801151628494_AddNewFkToRequestTable.cs" />
+    <Compile Include="Migrations\201801151628494_AddNewFkToRequestTable.Designer.cs">
+      <DependentUpon>201801151628494_AddNewFkToRequestTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801151652376_addRequest.cs" />
+    <Compile Include="Migrations\201801151652376_addRequest.Designer.cs">
+      <DependentUpon>201801151652376_addRequest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Classes\Profile.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\Request.cs" />
     <Compile Include="Models\Subject.cs" />
@@ -296,6 +304,26 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\Profile\Create.cshtml" />
+    <Content Include="Views\Profile\Delete.cshtml" />
+    <Content Include="Views\Profile\Details.cshtml" />
+    <Content Include="Views\Profile\Edit.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Subject\Create.cshtml" />
+    <Content Include="Views\Subject\Delete.cshtml" />
+    <Content Include="Views\Subject\Details.cshtml" />
+    <Content Include="Views\Subject\Edit.cshtml" />
+    <Content Include="Views\Subject\Index.cshtml" />
+    <Content Include="Views\Address\Create.cshtml" />
+    <Content Include="Views\Address\Delete.cshtml" />
+    <Content Include="Views\Address\Details.cshtml" />
+    <Content Include="Views\Address\Edit.cshtml" />
+    <Content Include="Views\Address\Index.cshtml" />
+    <Content Include="Views\Request\Create.cshtml" />
+    <Content Include="Views\Request\Delete.cshtml" />
+    <Content Include="Views\Request\Details.cshtml" />
+    <Content Include="Views\Request\Edit.cshtml" />
+    <Content Include="Views\Request\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -317,6 +345,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801151435210_AddNewTables.resx">
       <DependentUpon>201801151435210_AddNewTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801151628494_AddNewFkToRequestTable.resx">
+      <DependentUpon>201801151628494_AddNewFkToRequestTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801151652376_addRequest.resx">
+      <DependentUpon>201801151652376_addRequest.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

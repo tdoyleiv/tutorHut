@@ -1,0 +1,72 @@
+﻿@model tutorHut.Models.Profile
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Profile</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Address.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address.UserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationUser.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUser.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Subject.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subject.UserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfileFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProfileFirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfileLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProfileLastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfilePhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProfilePhoneNumber)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

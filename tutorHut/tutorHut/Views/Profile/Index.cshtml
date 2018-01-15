@@ -1,0 +1,63 @@
+﻿@model IEnumerable<tutorHut.Models.Profile>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Address.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicationUser.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Subject.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProfileFirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProfileLastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProfilePhoneNumber)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address.UserId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Subject.UserId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProfileFirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProfileLastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProfilePhoneNumber)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProfileId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ProfileId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProfileId })
+        </td>
+    </tr>
+}
+
+</table>

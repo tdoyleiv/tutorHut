@@ -21,6 +21,10 @@ namespace tutorHut.Models
         [ForeignKey("SubjectId")]
         public Subject Subject { get; set; }
 
+        public int ProfileId { get; set; }
+        [ForeignKey("ProfileId")]
+        public Profile Profile { get; set; }
+
         [Display(Name = "Date And Time")]
         public string DateAndTime { get; set; }
 
