@@ -28,7 +28,7 @@ namespace tutorHut
                 RoleManager.Create(role);
                 var user = new ApplicationUser();
                 user.UserName = "admin";
-                user.Email = "tfdoyleiv@gmail.com";
+                user.Email = "admin@gmail.com";
                 string userPWD = "J0hnM@u$";
                 var checkUser = UserManager.Create(user, userPWD);
                 if (checkUser.Succeeded)
