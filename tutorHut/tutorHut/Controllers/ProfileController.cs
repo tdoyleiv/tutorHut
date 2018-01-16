@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -18,6 +19,7 @@ namespace tutorHut.Controllers
         public ActionResult Index()
         {
             var profiles = db.Profiles.Include(p => p.Address).Include(p => p.ApplicationUser).Include(p => p.Request).Include(p => p.Subject);
+
             return View(profiles.ToList());
         }
 
@@ -53,6 +55,28 @@ namespace tutorHut.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ProfileId,UserId,AddressId,SubjectId,RequestId,ProfileFirstName,ProfileLastName,ProfilePhoneNumber,HourlyRate,MyDescription")] Profile profile)
         {
+            //obtain logged in ID
+            var UserId = User.Identity.GetUserId();
+            profile.UserId = UserId;
+
+            //obtain a profile id
+            profile.ProfileId = UserId;
+
+
+
+            //var Address = db.Addresses.Where(a => a.AddressId == profile.AddressId);
+            //profile.AddressId = Address;
+            //profile.AddressId = profile.AddressId;
+
+            //bottom does not belong here 
+            //var profiles = db.Profiles.Include(p => p.Address).Include(p => p.ApplicationUser).Include(p => p.Request).Include(p => p.Subject);
+
+            //address id
+            //var AddressId = db.Addresses;
+            //profile.AddressId = db.Addresses;
+
+            //I want to : profile.AddressId = AddressId from the Address Table
+
             if (ModelState.IsValid)
             {
                 db.Profiles.Add(profile);
@@ -60,10 +84,12 @@ namespace tutorHut.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AddressId = new SelectList(db.Addresses, "AddressId", "StreetAddress", profile.AddressId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Email", profile.UserId);
-            ViewBag.RequestId = new SelectList(db.Requests, "RequestId", "Status", profile.RequestId);
-            ViewBag.SubjectId = new SelectList(db.Subjects, "SubjectID", "EducationLevelId", profile.SubjectId);
+            //this creates a drop down box
+            //ViewBag.AddressId = new SelectList(db.Addresses, "AddressId", "StreetAddress", profile.AddressId);
+            //ViewBag.UserId = new SelectList(db.Users, "Id", "Email", profile.UserId);
+            //ViewBag.RequestId = new SelectList(db.Requests, "RequestId", "Status", profile.RequestId);
+            //ViewBag.SubjectId = new SelectList(db.Subjects, "SubjectID", "EducationLevelId", profile.SubjectId);
+
             return View(profile);
         }
 
