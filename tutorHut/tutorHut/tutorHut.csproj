@@ -201,6 +201,7 @@
     <Compile Include="Classes\ZIP.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddressController.cs" />
+    <Compile Include="Controllers\EducationLevelController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
@@ -211,29 +212,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201801141302469_InitialCreate.cs" />
-    <Compile Include="Migrations\201801141302469_InitialCreate.Designer.cs">
-      <DependentUpon>201801141302469_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801151431144_AddNewTable.cs" />
-    <Compile Include="Migrations\201801151431144_AddNewTable.Designer.cs">
-      <DependentUpon>201801151431144_AddNewTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801151435210_AddNewTables.cs" />
-    <Compile Include="Migrations\201801151435210_AddNewTables.Designer.cs">
-      <DependentUpon>201801151435210_AddNewTables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801151628494_AddNewFkToRequestTable.cs" />
-    <Compile Include="Migrations\201801151628494_AddNewFkToRequestTable.Designer.cs">
-      <DependentUpon>201801151628494_AddNewFkToRequestTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801151652376_addRequest.cs" />
-    <Compile Include="Migrations\201801151652376_addRequest.Designer.cs">
-      <DependentUpon>201801151652376_addRequest.cs</DependentUpon>
+    <Compile Include="Migrations\201801161050231_NewTables.cs" />
+    <Compile Include="Migrations\201801161050231_NewTables.Designer.cs">
+      <DependentUpon>201801161050231_NewTables.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\EducationLevel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Profile.cs" />
@@ -306,16 +292,16 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\EducationLevel\Create.cshtml" />
+    <Content Include="Views\EducationLevel\Delete.cshtml" />
+    <Content Include="Views\EducationLevel\Details.cshtml" />
+    <Content Include="Views\EducationLevel\Edit.cshtml" />
+    <Content Include="Views\EducationLevel\Index.cshtml" />
     <Content Include="Views\Profile\Create.cshtml" />
     <Content Include="Views\Profile\Delete.cshtml" />
     <Content Include="Views\Profile\Details.cshtml" />
     <Content Include="Views\Profile\Edit.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
-    <Content Include="Views\Subject\Create.cshtml" />
-    <Content Include="Views\Subject\Delete.cshtml" />
-    <Content Include="Views\Subject\Details.cshtml" />
-    <Content Include="Views\Subject\Edit.cshtml" />
-    <Content Include="Views\Subject\Index.cshtml" />
     <Content Include="Views\Address\Create.cshtml" />
     <Content Include="Views\Address\Delete.cshtml" />
     <Content Include="Views\Address\Details.cshtml" />
@@ -326,6 +312,11 @@
     <Content Include="Views\Request\Details.cshtml" />
     <Content Include="Views\Request\Edit.cshtml" />
     <Content Include="Views\Request\Index.cshtml" />
+    <Content Include="Views\Subject\Create.cshtml" />
+    <Content Include="Views\Subject\Delete.cshtml" />
+    <Content Include="Views\Subject\Details.cshtml" />
+    <Content Include="Views\Subject\Edit.cshtml" />
+    <Content Include="Views\Subject\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -339,20 +330,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201801141302469_InitialCreate.resx">
-      <DependentUpon>201801141302469_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801151431144_AddNewTable.resx">
-      <DependentUpon>201801151431144_AddNewTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801151435210_AddNewTables.resx">
-      <DependentUpon>201801151435210_AddNewTables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801151628494_AddNewFkToRequestTable.resx">
-      <DependentUpon>201801151628494_AddNewFkToRequestTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801151652376_addRequest.resx">
-      <DependentUpon>201801151652376_addRequest.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201801161050231_NewTables.resx">
+      <DependentUpon>201801161050231_NewTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

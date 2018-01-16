@@ -17,12 +17,12 @@ namespace tutorHut.Controllers
         // GET: Profile
         public ActionResult Index()
         {
-            var profiles = db.Profiles.Include(p => p.Address).Include(p => p.ApplicationUser).Include(p => p.Subject);
+            var profiles = db.Profiles.Include(p => p.Address).Include(p => p.ApplicationUser).Include(p => p.Request).Include(p => p.Subject);
             return View(profiles.ToList());
         }
 
         // GET: Profile/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
@@ -39,9 +39,10 @@ namespace tutorHut.Controllers
         // GET: Profile/Create
         public ActionResult Create()
         {
-            ViewBag.AddressId = new SelectList(db.Addresses, "AddressId", "UserId");
+            ViewBag.AddressId = new SelectList(db.Addresses, "AddressId", "StreetAddress");
             ViewBag.UserId = new SelectList(db.Users, "Id", "Email");
-            ViewBag.SubjectId = new SelectList(db.Subjects, "SubjectID", "UserId");
+            ViewBag.RequestId = new SelectList(db.Requests, "RequestId", "Status");
+            ViewBag.SubjectId = new SelectList(db.Subjects, "SubjectID", "EducationLevelId");
             return View();
         }
 
@@ -50,7 +51,7 @@ namespace tutorHut.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProfileId,UserId,AddressId,SubjectId,ProfileFirstName,ProfileLastName,ProfilePhoneNumber")] Profile profile)
+        public ActionResult Create([Bind(Include = "ProfileId,UserId,AddressId,SubjectId,RequestId,ProfileFirstName,ProfileLastName,ProfilePhoneNumber,HourlyRate,MyDescription")] Profile profile)
         {
             if (ModelState.IsValid)
             {
@@ -59,14 +60,15 @@ namespace tutorHut.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AddressId = new SelectList(db.Addresses, "AddressId", "UserId", profile.AddressId);
+            ViewBag.AddressId = new SelectList(db.Addresses, "AddressId", "StreetAddress", profile.AddressId);
             ViewBag.UserId = new SelectList(db.Users, "Id", "Email", profile.UserId);
-            ViewBag.SubjectId = new SelectList(db.Subjects, "SubjectID", "UserId", profile.SubjectId);
+            ViewBag.RequestId = new SelectList(db.Requests, "RequestId", "Status", profile.RequestId);
+            ViewBag.SubjectId = new SelectList(db.Subjects, "SubjectID", "EducationLevelId", profile.SubjectId);
             return View(profile);
         }
 
         // GET: Profile/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
@@ -77,9 +79,10 @@ namespace tutorHut.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.AddressId = new SelectList(db.Addresses, "AddressId", "UserId", profile.AddressId);
+            ViewBag.AddressId = new SelectList(db.Addresses, "AddressId", "StreetAddress", profile.AddressId);
             ViewBag.UserId = new SelectList(db.Users, "Id", "Email", profile.UserId);
-            ViewBag.SubjectId = new SelectList(db.Subjects, "SubjectID", "UserId", profile.SubjectId);
+            ViewBag.RequestId = new SelectList(db.Requests, "RequestId", "Status", profile.RequestId);
+            ViewBag.SubjectId = new SelectList(db.Subjects, "SubjectID", "EducationLevelId", profile.SubjectId);
             return View(profile);
         }
 
@@ -88,7 +91,7 @@ namespace tutorHut.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProfileId,UserId,AddressId,SubjectId,ProfileFirstName,ProfileLastName,ProfilePhoneNumber")] Profile profile)
+        public ActionResult Edit([Bind(Include = "ProfileId,UserId,AddressId,SubjectId,RequestId,ProfileFirstName,ProfileLastName,ProfilePhoneNumber,HourlyRate,MyDescription")] Profile profile)
         {
             if (ModelState.IsValid)
             {
@@ -96,14 +99,15 @@ namespace tutorHut.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.AddressId = new SelectList(db.Addresses, "AddressId", "UserId", profile.AddressId);
+            ViewBag.AddressId = new SelectList(db.Addresses, "AddressId", "StreetAddress", profile.AddressId);
             ViewBag.UserId = new SelectList(db.Users, "Id", "Email", profile.UserId);
-            ViewBag.SubjectId = new SelectList(db.Subjects, "SubjectID", "UserId", profile.SubjectId);
+            ViewBag.RequestId = new SelectList(db.Requests, "RequestId", "Status", profile.RequestId);
+            ViewBag.SubjectId = new SelectList(db.Subjects, "SubjectID", "EducationLevelId", profile.SubjectId);
             return View(profile);
         }
 
         // GET: Profile/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
@@ -120,7 +124,7 @@ namespace tutorHut.Controllers
         // POST: Profile/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
             Profile profile = db.Profiles.Find(id);
             db.Profiles.Remove(profile);

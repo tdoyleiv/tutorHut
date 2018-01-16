@@ -10,112 +10,107 @@ using tutorHut.Models;
 
 namespace tutorHut.Controllers
 {
-    public class SubjectController : Controller
+    public class EducationLevelController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Subject
+        // GET: EducationLevel
         public ActionResult Index()
         {
-            var subjects = db.Subjects.Include(s => s.EducationLevel);
-            return View(subjects.ToList());
+            return View(db.EducationLevels.ToList());
         }
 
-        // GET: Subject/Details/5
+        // GET: EducationLevel/Details/5
         public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Subject subject = db.Subjects.Find(id);
-            if (subject == null)
+            EducationLevel educationLevel = db.EducationLevels.Find(id);
+            if (educationLevel == null)
             {
                 return HttpNotFound();
             }
-            return View(subject);
+            return View(educationLevel);
         }
 
-        // GET: Subject/Create
+        // GET: EducationLevel/Create
         public ActionResult Create()
         {
-            ViewBag.EducationLevelId = new SelectList(db.EducationLevels, "EducationLevelId", "LevelType");
             return View();
         }
 
-        // POST: Subject/Create
+        // POST: EducationLevel/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SubjectID,EducationLevelId,SubjectName")] Subject subject)
+        public ActionResult Create([Bind(Include = "EducationLevelId,LevelType")] EducationLevel educationLevel)
         {
             if (ModelState.IsValid)
             {
-                db.Subjects.Add(subject);
+                db.EducationLevels.Add(educationLevel);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EducationLevelId = new SelectList(db.EducationLevels, "EducationLevelId", "LevelType", subject.EducationLevelId);
-            return View(subject);
+            return View(educationLevel);
         }
 
-        // GET: Subject/Edit/5
+        // GET: EducationLevel/Edit/5
         public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Subject subject = db.Subjects.Find(id);
-            if (subject == null)
+            EducationLevel educationLevel = db.EducationLevels.Find(id);
+            if (educationLevel == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.EducationLevelId = new SelectList(db.EducationLevels, "EducationLevelId", "LevelType", subject.EducationLevelId);
-            return View(subject);
+            return View(educationLevel);
         }
 
-        // POST: Subject/Edit/5
+        // POST: EducationLevel/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SubjectID,EducationLevelId,SubjectName")] Subject subject)
+        public ActionResult Edit([Bind(Include = "EducationLevelId,LevelType")] EducationLevel educationLevel)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(subject).State = EntityState.Modified;
+                db.Entry(educationLevel).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.EducationLevelId = new SelectList(db.EducationLevels, "EducationLevelId", "LevelType", subject.EducationLevelId);
-            return View(subject);
+            return View(educationLevel);
         }
 
-        // GET: Subject/Delete/5
+        // GET: EducationLevel/Delete/5
         public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Subject subject = db.Subjects.Find(id);
-            if (subject == null)
+            EducationLevel educationLevel = db.EducationLevels.Find(id);
+            if (educationLevel == null)
             {
                 return HttpNotFound();
             }
-            return View(subject);
+            return View(educationLevel);
         }
 
-        // POST: Subject/Delete/5
+        // POST: EducationLevel/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Subject subject = db.Subjects.Find(id);
-            db.Subjects.Remove(subject);
+            EducationLevel educationLevel = db.EducationLevels.Find(id);
+            db.EducationLevels.Remove(educationLevel);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

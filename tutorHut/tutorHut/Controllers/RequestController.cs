@@ -17,12 +17,11 @@ namespace tutorHut.Controllers
         // GET: Request
         public ActionResult Index()
         {
-            var requests = db.Requests.Include(r => r.Address).Include(r => r.Profile).Include(r => r.Subject);
-            return View(requests.ToList());
+            return View(db.Requests.ToList());
         }
 
         // GET: Request/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
@@ -39,9 +38,6 @@ namespace tutorHut.Controllers
         // GET: Request/Create
         public ActionResult Create()
         {
-            ViewBag.AddressId = new SelectList(db.Addresses, "AddressId", "UserId");
-            ViewBag.ProfileId = new SelectList(db.Profiles, "ProfileId", "UserId");
-            ViewBag.SubjectId = new SelectList(db.Subjects, "SubjectID", "UserId");
             return View();
         }
 
@@ -50,7 +46,7 @@ namespace tutorHut.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RequestId,AddressId,SubjectId,ProfileId,DateAndTime,Status")] Request request)
+        public ActionResult Create([Bind(Include = "RequestId,DateAndTime,Status")] Request request)
         {
             if (ModelState.IsValid)
             {
@@ -59,14 +55,11 @@ namespace tutorHut.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AddressId = new SelectList(db.Addresses, "AddressId", "UserId", request.AddressId);
-            ViewBag.ProfileId = new SelectList(db.Profiles, "ProfileId", "UserId", request.ProfileId);
-            ViewBag.SubjectId = new SelectList(db.Subjects, "SubjectID", "UserId", request.SubjectId);
             return View(request);
         }
 
         // GET: Request/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
@@ -77,9 +70,6 @@ namespace tutorHut.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.AddressId = new SelectList(db.Addresses, "AddressId", "UserId", request.AddressId);
-            ViewBag.ProfileId = new SelectList(db.Profiles, "ProfileId", "UserId", request.ProfileId);
-            ViewBag.SubjectId = new SelectList(db.Subjects, "SubjectID", "UserId", request.SubjectId);
             return View(request);
         }
 
@@ -88,7 +78,7 @@ namespace tutorHut.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RequestId,AddressId,SubjectId,ProfileId,DateAndTime,Status")] Request request)
+        public ActionResult Edit([Bind(Include = "RequestId,DateAndTime,Status")] Request request)
         {
             if (ModelState.IsValid)
             {
@@ -96,14 +86,11 @@ namespace tutorHut.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.AddressId = new SelectList(db.Addresses, "AddressId", "UserId", request.AddressId);
-            ViewBag.ProfileId = new SelectList(db.Profiles, "ProfileId", "UserId", request.ProfileId);
-            ViewBag.SubjectId = new SelectList(db.Subjects, "SubjectID", "UserId", request.SubjectId);
             return View(request);
         }
 
         // GET: Request/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
@@ -120,7 +107,7 @@ namespace tutorHut.Controllers
         // POST: Request/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
             Request request = db.Requests.Find(id);
             db.Requests.Remove(request);

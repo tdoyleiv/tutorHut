@@ -12,22 +12,26 @@ namespace tutorHut.Models
     public class Request
     {
         [Key]
-        public int RequestId { get; set; }
+        public string RequestId { get; set; }
 
-        public int AddressId { get; set; }
-        [ForeignKey("AddressId")]
-        public Address Address { get; set; }
+        //public string AddressId { get; set; }
+        //[ForeignKey("AddressId")]
+        //public Address Address { get; set; }
 
-        public int SubjectId { get; set; }
-        [ForeignKey("SubjectId")]
-        public Subject Subject { get; set; }
+        //public string UserId { get; set; }
+        //[ForeignKey("UserId")]
+        //public ApplicationUser ApplicationUser { get; set; }
 
-        public int ProfileId { get; set; }
-        [ForeignKey("ProfileId")]
-        public Profile Profile { get; set; }
+        //public string SubjectId { get; set; }
+        //[ForeignKey("SubjectId")]
+        //public Subject Subject { get; set; }
+
+        //public string ProfileId { get; set; }
+        //[ForeignKey("ProfileId")]
+        //public Profile Profile { get; set; }
 
         [Display(Name = "Date And Time")]
-        public string DateAndTime { get; set; }
+        public DateTime DateAndTime { get; set; }
 
         [Display(Name = "Status")]
         public string Status { get; set; }

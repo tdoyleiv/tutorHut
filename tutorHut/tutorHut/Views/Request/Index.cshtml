@@ -12,15 +12,6 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Address.UserId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Profile.UserId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Subject.UserId)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.DateAndTime)
         </th>
         <th>
@@ -31,15 +22,6 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address.UserId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Profile.UserId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Subject.UserId)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.DateAndTime)
         </td>

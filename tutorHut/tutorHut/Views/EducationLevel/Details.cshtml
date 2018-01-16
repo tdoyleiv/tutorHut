@@ -1,0 +1,26 @@
+﻿@model tutorHut.Models.EducationLevel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>EducationLevel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LevelType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LevelType)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EducationLevelId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

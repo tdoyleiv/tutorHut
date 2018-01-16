@@ -17,12 +17,11 @@ namespace tutorHut.Controllers
         // GET: Address
         public ActionResult Index()
         {
-            var addresses = db.Addresses.Include(a => a.ApplicationUser);
-            return View(addresses.ToList());
+            return View(db.Addresses.ToList());
         }
 
         // GET: Address/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
@@ -39,7 +38,6 @@ namespace tutorHut.Controllers
         // GET: Address/Create
         public ActionResult Create()
         {
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Email");
             return View();
         }
 
@@ -48,7 +46,7 @@ namespace tutorHut.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AddressId,UserId,StreetAddress,City,State,Zip")] Address address)
+        public ActionResult Create([Bind(Include = "AddressId,StreetAddress,City,State,ZipCode")] Address address)
         {
             if (ModelState.IsValid)
             {
@@ -57,12 +55,11 @@ namespace tutorHut.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Email", address.UserId);
             return View(address);
         }
 
         // GET: Address/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
@@ -73,7 +70,6 @@ namespace tutorHut.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Email", address.UserId);
             return View(address);
         }
 
@@ -82,7 +78,7 @@ namespace tutorHut.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AddressId,UserId,StreetAddress,City,State,Zip")] Address address)
+        public ActionResult Edit([Bind(Include = "AddressId,StreetAddress,City,State,ZipCode")] Address address)
         {
             if (ModelState.IsValid)
             {
@@ -90,12 +86,11 @@ namespace tutorHut.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Email", address.UserId);
             return View(address);
         }
 
         // GET: Address/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
@@ -112,7 +107,7 @@ namespace tutorHut.Controllers
         // POST: Address/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
             Address address = db.Addresses.Find(id);
             db.Addresses.Remove(address);

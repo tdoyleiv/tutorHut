@@ -34,5 +34,7 @@ namespace tutorHut.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<tutorHut.Models.EducationLevel> EducationLevels { get; set; }
     }
 }

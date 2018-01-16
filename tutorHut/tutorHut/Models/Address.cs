@@ -11,11 +11,11 @@ namespace tutorHut.Models
     public class Address
     {
         [Key]
-        public int AddressId { get; set; }
+        public string AddressId { get; set; }
 
-        public string UserId { get; set; }
-        [ForeignKey("UserId")]
-        public ApplicationUser ApplicationUser { get; set; }
+        //public string UserId { get; set; }
+        //[ForeignKey("UserId")]
+        //public ApplicationUser ApplicationUser { get; set; }
 
         [Display(Name = "Street Address")]
         public string StreetAddress { get; set; }
@@ -27,6 +27,6 @@ namespace tutorHut.Models
         public string State { get; set; }
 
         [Display(Name = "Zip Code")]
-        public string Zip { get; set; }
+        public string ZipCode { get; set; }
     }
 }
