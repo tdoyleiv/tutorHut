@@ -18,7 +18,9 @@ namespace tutorHut.Controllers
         // GET: Address
         public ActionResult Index()
         {
+            // [ 1 ]
             //var Addresses = db.Addresses.Include(a => a.AddressId);
+            // [ 1 ] End
 
             //obtain logged in ID
             //var UserId = User.Identity.GetUserId();
@@ -30,15 +32,17 @@ namespace tutorHut.Controllers
             //Profile userProfile = db.Profiles.Where(p => p.UserId == userID).First();
             //userProfile.AddressId = address.AddressId;
 
+            // [ 2 ]
             var userID = User.Identity.GetUserId();
             Profile userProfile = db.Profiles.Where(p => p.UserId == userID).First();
-
+            // [ 2 ] end
 
             //address id is the id that matchs the user's profile
             // this doesn't exist yet
             //  - create it in the profile controller
             //
 
+            //[ 2 ]
             try
             {
                 var Address = db.Addresses.Include(a => a.AddressId == userProfile.AddressId);
@@ -48,10 +52,12 @@ namespace tutorHut.Controllers
             {
                 return RedirectToAction("Create");
             }
+            //[ 2 ] End
 
-
-
+            // [ 1 ] 
             //return View(db.Addresses.ToList());
+            // [ 1 ] End
+
             //return View(userProfile.Address);
             //return View(Address);
         }
@@ -104,7 +110,8 @@ namespace tutorHut.Controllers
                 // ?shouldn't this be in the profile controller?
                 //userProfile.Address.AddressId = address.AddressId;
 
-                address.AddressId = userProfile.ProfileId;
+                //address.AddressId = userProfile.ProfileId;
+                //sets the usrProfile the streetAddress
                 userProfile.AddressId = address.AddressId;
 
                 db.Addresses.Add(address);

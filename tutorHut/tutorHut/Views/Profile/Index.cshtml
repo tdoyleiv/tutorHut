@@ -6,76 +6,185 @@
 
 <h2>Index</h2>
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
+
 <table class="table">
+
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Address.StreetAddress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ApplicationUser.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Request.Status)
-        </th>
-        <th>
+        <td>
             @Html.DisplayNameFor(model => model.Subject.SubjectName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProfileFirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProfileLastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProfilePhoneNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HourlyRate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MyDescription)
-        </th>
-        <th></th>
+        </td>
+        @foreach (var item in Model)
+        {
+            <td align="justify">
+                @Html.DisplayFor(modelItem => item.Subject.SubjectName)
+            </td>
+        }
     </tr>
 
-@foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
+        <td>
+            @Html.ActionLink("Change Subject", "Index", "Subject")
+        </td>
+    }
+
+
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Address.StreetAddress)
+            @Html.DisplayNameFor(model => model.HourlyRate)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Request.Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Subject.SubjectName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProfileFirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProfileLastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProfilePhoneNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HourlyRate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MyDescription)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ProfileId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ProfileId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ProfileId })
-        </td>
+        @foreach (var item in Model)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.HourlyRate)
+            </td>
+        }
     </tr>
-}
+
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.ProfileFirstName)
+        </td>
+        @foreach (var item in Model)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.ProfileFirstName)
+            </td>
+        }
+    </tr>
+
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.ProfileLastName)
+        </td>
+        @foreach (var item in Model)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.ProfileLastName)
+            </td>
+        }
+    </tr>
+
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.ProfilePhoneNumber)
+        </td>
+        @foreach (var item in Model)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.ProfilePhoneNumber)
+            </td>
+        }
+    </tr>
+
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.ApplicationUser.Email)
+        </td>
+        @foreach (var item in Model)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
+            </td>
+        }
+    </tr>
+
+
+
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.MyDescription)
+        </td>
+        @foreach (var item in Model)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.MyDescription)
+            </td>
+        }
+    </tr>
+
+    @*@foreach (var item in Model)
+    {
+        <td>
+            @Html.ActionLink("Change Profile", "Edit", new { id = item.ProfileId })  
+            @Html.ActionLink("Details", "Details", new { id = item.ProfileId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ProfileId })
+        </td>
+    }*@
+
+    @*@Html.ActionLink("Change Profile", "Create")*@
+
+    @foreach (var item in Model)
+    {
+        <td>
+            @Html.ActionLink("Change Profile", "Create", "Profile")
+        </td>
+    }
 
 </table>
+
+<hr />
+
+<table class="table">
+
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.Address.StreetAddress)
+        </td>
+        @foreach (var item in Model)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.Address.StreetAddress)
+            </td>
+        }
+    </tr>
+
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.Address.City)
+        </td>
+        @foreach (var item in Model)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.Address.City)
+            </td>
+        }
+    </tr>
+
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.Address.State)
+        </td>
+        @foreach (var item in Model)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.Address.State)
+            </td>
+        }
+    </tr>
+
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.Address.ZipCode)
+        </td>
+        @foreach (var item in Model)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.Address.ZipCode)
+            </td>
+        }
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <td>
+            @Html.ActionLink("Change Address", "Index", "Address")
+        </td>
+    }
+
+</table>
+
+

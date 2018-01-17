@@ -22,7 +22,7 @@ namespace tutorHut.Controllers
 
             var profiles = db.Profiles.Include(p => p.Address).Include(p => p.ApplicationUser).Include(p => p.Request).Include(p => p.Subject);
 
-            profiles = db.Profiles.Where(p => p.UserId == userId).Include(p => p.Address).Include(p => p.ApplicationUser);
+            profiles = db.Profiles.Where(p => p.UserId == userId).Include(p => p.Address).Include(p => p.ApplicationUser).Include(p => p.Subject);
 
             //2/var userId = User.Identity.GetUserId();
 

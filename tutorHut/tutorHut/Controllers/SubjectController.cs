@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -17,8 +18,36 @@ namespace tutorHut.Controllers
         // GET: Subject
         public ActionResult Index()
         {
-            var subjects = db.Subjects.Include(s => s.EducationLevel);
-            return View(subjects.ToList());
+            // [ 1 ]
+            //var subjects = db.Subjects.Include(s => s.EducationLevel);
+            //[ 1 ] end
+
+
+            // [ 2 ]
+            var userID = User.Identity.GetUserId();
+            Profile userProfile = db.Profiles.Where(p => p.UserId == userID).First();
+            // [ 2 ] end
+
+
+
+            //[ 2 ]
+            try
+            {
+                var subjects = db.Subjects.Include(a => a.SubjectID == userProfile.AddressId);
+                return View(subjects);
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Create");
+            }
+            //[ 2 ] End
+
+
+
+            // [ 1 ]
+            //return View(subjects.ToList());
+            // [ 1 ] end
+
         }
 
         // GET: Subject/Details/5
@@ -52,6 +81,17 @@ namespace tutorHut.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                //get the user that's logged in
+                var userId = User.Identity.GetUserId();
+                //get the user's profile
+                Profile userProfile = db.Profiles.Where(p => p.UserId == userId).First();
+
+                //sets the usrProfile the subjectId
+                userProfile.SubjectId = subject.SubjectID;
+
+
+
                 db.Subjects.Add(subject);
                 db.SaveChanges();
                 return RedirectToAction("Index");
