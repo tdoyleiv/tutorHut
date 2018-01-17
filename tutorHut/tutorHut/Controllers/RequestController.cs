@@ -21,7 +21,7 @@ namespace tutorHut.Controllers
         }
 
         // GET: Request/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -59,7 +59,7 @@ namespace tutorHut.Controllers
         }
 
         // GET: Request/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -90,7 +90,7 @@ namespace tutorHut.Controllers
         }
 
         // GET: Request/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -107,7 +107,7 @@ namespace tutorHut.Controllers
         // POST: Request/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
             Request request = db.Requests.Find(id);
             db.Requests.Remove(request);

@@ -11,7 +11,7 @@ namespace tutorHut.Models
     public class Address
     {
         [Key]
-        public string AddressId { get; set; }
+        public int AddressId { get; set; }
 
         //public string UserId { get; set; }
         //[ForeignKey("UserId")]

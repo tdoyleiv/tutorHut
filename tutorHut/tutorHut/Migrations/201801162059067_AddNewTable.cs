@@ -3,7 +3,7 @@ namespace tutorHut.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class NewTables : DbMigration
+    public partial class AddNewTable : DbMigration
     {
         public override void Up()
         {
@@ -11,7 +11,7 @@ namespace tutorHut.Migrations
                 "dbo.Addresses",
                 c => new
                     {
-                        AddressId = c.String(nullable: false, maxLength: 128),
+                        AddressId = c.Int(nullable: false, identity: true),
                         StreetAddress = c.String(),
                         City = c.String(),
                         State = c.String(),
@@ -20,14 +20,23 @@ namespace tutorHut.Migrations
                 .PrimaryKey(t => t.AddressId);
             
             CreateTable(
+                "dbo.EducationLevels",
+                c => new
+                    {
+                        EducationLevelId = c.Int(nullable: false, identity: true),
+                        LevelType = c.String(),
+                    })
+                .PrimaryKey(t => t.EducationLevelId);
+            
+            CreateTable(
                 "dbo.Profiles",
                 c => new
                     {
-                        ProfileId = c.String(nullable: false, maxLength: 128),
+                        ProfileId = c.Int(nullable: false, identity: true),
                         UserId = c.String(maxLength: 128),
-                        AddressId = c.String(maxLength: 128),
-                        SubjectId = c.String(maxLength: 128),
-                        RequestId = c.String(maxLength: 128),
+                        AddressId = c.Int(nullable: false),
+                        SubjectId = c.Int(nullable: false),
+                        RequestId = c.Int(nullable: false),
                         ProfileFirstName = c.String(),
                         ProfileLastName = c.String(),
                         ProfilePhoneNumber = c.String(),
@@ -35,10 +44,10 @@ namespace tutorHut.Migrations
                         MyDescription = c.String(),
                     })
                 .PrimaryKey(t => t.ProfileId)
-                .ForeignKey("dbo.Addresses", t => t.AddressId)
+                .ForeignKey("dbo.Addresses", t => t.AddressId, cascadeDelete: true)
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId)
-                .ForeignKey("dbo.Requests", t => t.RequestId)
-                .ForeignKey("dbo.Subjects", t => t.SubjectId)
+                .ForeignKey("dbo.Requests", t => t.RequestId, cascadeDelete: true)
+                .ForeignKey("dbo.Subjects", t => t.SubjectId, cascadeDelete: true)
                 .Index(t => t.UserId)
                 .Index(t => t.AddressId)
                 .Index(t => t.SubjectId)
@@ -106,7 +115,7 @@ namespace tutorHut.Migrations
                 "dbo.Requests",
                 c => new
                     {
-                        RequestId = c.String(nullable: false, maxLength: 128),
+                        RequestId = c.Int(nullable: false, identity: true),
                         DateAndTime = c.DateTime(nullable: false),
                         Status = c.String(),
                     })
@@ -116,22 +125,13 @@ namespace tutorHut.Migrations
                 "dbo.Subjects",
                 c => new
                     {
-                        SubjectID = c.String(nullable: false, maxLength: 128),
-                        EducationLevelId = c.String(maxLength: 128),
+                        SubjectID = c.Int(nullable: false, identity: true),
+                        EducationLevelId = c.Int(nullable: false),
                         SubjectName = c.String(),
                     })
                 .PrimaryKey(t => t.SubjectID)
-                .ForeignKey("dbo.EducationLevels", t => t.EducationLevelId)
+                .ForeignKey("dbo.EducationLevels", t => t.EducationLevelId, cascadeDelete: true)
                 .Index(t => t.EducationLevelId);
-            
-            CreateTable(
-                "dbo.EducationLevels",
-                c => new
-                    {
-                        EducationLevelId = c.String(nullable: false, maxLength: 128),
-                        LevelType = c.String(),
-                    })
-                .PrimaryKey(t => t.EducationLevelId);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -168,7 +168,6 @@ namespace tutorHut.Migrations
             DropIndex("dbo.Profiles", new[] { "AddressId" });
             DropIndex("dbo.Profiles", new[] { "UserId" });
             DropTable("dbo.AspNetRoles");
-            DropTable("dbo.EducationLevels");
             DropTable("dbo.Subjects");
             DropTable("dbo.Requests");
             DropTable("dbo.AspNetUserRoles");
@@ -176,6 +175,7 @@ namespace tutorHut.Migrations
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.Profiles");
+            DropTable("dbo.EducationLevels");
             DropTable("dbo.Addresses");
         }
     }

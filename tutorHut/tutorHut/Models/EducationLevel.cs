@@ -11,7 +11,7 @@ namespace tutorHut.Models
     public class EducationLevel
     {
         [Key]
-        public string EducationLevelId { get; set; }
+        public int EducationLevelId { get; set; }
 
         //public string UserId { get; set; }
         //[ForeignKey("UserId")]

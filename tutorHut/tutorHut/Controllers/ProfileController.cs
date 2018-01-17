@@ -18,13 +18,24 @@ namespace tutorHut.Controllers
         // GET: Profile
         public ActionResult Index()
         {
+            var userId = User.Identity.GetUserId();
+
             var profiles = db.Profiles.Include(p => p.Address).Include(p => p.ApplicationUser).Include(p => p.Request).Include(p => p.Subject);
 
-            return View(profiles.ToList());
+            profiles = db.Profiles.Where(p => p.UserId == userId).Include(p => p.Address).Include(p => p.ApplicationUser);
+
+            //2/var userId = User.Identity.GetUserId();
+
+            //serch for the correct profile
+            //2/var profileId = db.Profiles.Where(p => p.UserId == userId);
+
+            //return View(profiles.ToList());
+            return View(profiles);
+            //2/return View(profileId);
         }
 
         // GET: Profile/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -44,7 +55,7 @@ namespace tutorHut.Controllers
             ViewBag.AddressId = new SelectList(db.Addresses, "AddressId", "StreetAddress");
             ViewBag.UserId = new SelectList(db.Users, "Id", "Email");
             ViewBag.RequestId = new SelectList(db.Requests, "RequestId", "Status");
-            ViewBag.SubjectId = new SelectList(db.Subjects, "SubjectID", "EducationLevelId");
+            ViewBag.SubjectId = new SelectList(db.Subjects, "SubjectID", "SubjectName");
             return View();
         }
 
@@ -55,27 +66,28 @@ namespace tutorHut.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ProfileId,UserId,AddressId,SubjectId,RequestId,ProfileFirstName,ProfileLastName,ProfilePhoneNumber,HourlyRate,MyDescription")] Profile profile)
         {
-            //obtain logged in ID
-            var UserId = User.Identity.GetUserId();
-            profile.UserId = UserId;
+            //get user id
+            //var UserId = User.Identity.GetUserId();
+            //profile.UserId = UserId;
 
-            //obtain a profile id
-            profile.ProfileId = UserId;
+            //obtain the user's id
+            var userId = User.Identity.GetUserId();
+            //set user's id to FK UserID in Profile
+            profile.UserId = userId;
+            
 
+            //create a Address with an Id
+            // connect address id with profile id
+            // I want AddressId to be populated with Profile Id
+            //var address = db.Addresses.Include(a => a.AddressId);
+            //Address address1;
+            //address1.AddressId = profile.ProfileId;
+            //profile.AddressId = address1.AddressId;
+            //address1.AddressId = profile.AddressId;
 
+            //Address address = db.Addresses.Include(a => a.AddressId == ProfileId);
 
-            //var Address = db.Addresses.Where(a => a.AddressId == profile.AddressId);
-            //profile.AddressId = Address;
-            //profile.AddressId = profile.AddressId;
-
-            //bottom does not belong here 
-            //var profiles = db.Profiles.Include(p => p.Address).Include(p => p.ApplicationUser).Include(p => p.Request).Include(p => p.Subject);
-
-            //address id
-            //var AddressId = db.Addresses;
-            //profile.AddressId = db.Addresses;
-
-            //I want to : profile.AddressId = AddressId from the Address Table
+            //profile.Address.AddressId = address.AddressId;
 
             if (ModelState.IsValid)
             {
@@ -84,17 +96,17 @@ namespace tutorHut.Controllers
                 return RedirectToAction("Index");
             }
 
-            //this creates a drop down box
+            //drop down list
             //ViewBag.AddressId = new SelectList(db.Addresses, "AddressId", "StreetAddress", profile.AddressId);
             //ViewBag.UserId = new SelectList(db.Users, "Id", "Email", profile.UserId);
             //ViewBag.RequestId = new SelectList(db.Requests, "RequestId", "Status", profile.RequestId);
-            //ViewBag.SubjectId = new SelectList(db.Subjects, "SubjectID", "EducationLevelId", profile.SubjectId);
+            //ViewBag.SubjectId = new SelectList(db.Subjects, "SubjectID", "SubjectName", profile.SubjectId);
 
             return View(profile);
         }
 
         // GET: Profile/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -108,7 +120,7 @@ namespace tutorHut.Controllers
             ViewBag.AddressId = new SelectList(db.Addresses, "AddressId", "StreetAddress", profile.AddressId);
             ViewBag.UserId = new SelectList(db.Users, "Id", "Email", profile.UserId);
             ViewBag.RequestId = new SelectList(db.Requests, "RequestId", "Status", profile.RequestId);
-            ViewBag.SubjectId = new SelectList(db.Subjects, "SubjectID", "EducationLevelId", profile.SubjectId);
+            ViewBag.SubjectId = new SelectList(db.Subjects, "SubjectID", "SubjectName", profile.SubjectId);
             return View(profile);
         }
 
@@ -128,12 +140,12 @@ namespace tutorHut.Controllers
             ViewBag.AddressId = new SelectList(db.Addresses, "AddressId", "StreetAddress", profile.AddressId);
             ViewBag.UserId = new SelectList(db.Users, "Id", "Email", profile.UserId);
             ViewBag.RequestId = new SelectList(db.Requests, "RequestId", "Status", profile.RequestId);
-            ViewBag.SubjectId = new SelectList(db.Subjects, "SubjectID", "EducationLevelId", profile.SubjectId);
+            ViewBag.SubjectId = new SelectList(db.Subjects, "SubjectID", "SubjectName", profile.SubjectId);
             return View(profile);
         }
 
         // GET: Profile/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -150,7 +162,7 @@ namespace tutorHut.Controllers
         // POST: Profile/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
             Profile profile = db.Profiles.Find(id);
             db.Profiles.Remove(profile);

@@ -7,13 +7,13 @@ namespace tutorHut.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class NewTables : IMigrationMetadata
+    public sealed partial class AddNewTable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(NewTables));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddNewTable));
         
         string IMigrationMetadata.Id
         {
-            get { return "201801161050231_NewTables"; }
+            get { return "201801162059067_AddNewTable"; }
         }
         
         string IMigrationMetadata.Source

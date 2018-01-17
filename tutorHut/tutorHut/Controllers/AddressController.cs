@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -17,11 +18,46 @@ namespace tutorHut.Controllers
         // GET: Address
         public ActionResult Index()
         {
-            return View(db.Addresses.ToList());
+            //var Addresses = db.Addresses.Include(a => a.AddressId);
+
+            //obtain logged in ID
+            //var UserId = User.Identity.GetUserId();
+            //var profile = db.Profiles.Where(p => p.UserId == UserId).First();
+
+            //get user id
+            //var userID = User.Identity.GetUserId();
+            //get the profile that corrolates to that id
+            //Profile userProfile = db.Profiles.Where(p => p.UserId == userID).First();
+            //userProfile.AddressId = address.AddressId;
+
+            var userID = User.Identity.GetUserId();
+            Profile userProfile = db.Profiles.Where(p => p.UserId == userID).First();
+
+
+            //address id is the id that matchs the user's profile
+            // this doesn't exist yet
+            //  - create it in the profile controller
+            //
+
+            try
+            {
+                var Address = db.Addresses.Include(a => a.AddressId == userProfile.AddressId);
+                return View(Address);
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Create");
+            }
+
+
+
+            //return View(db.Addresses.ToList());
+            //return View(userProfile.Address);
+            //return View(Address);
         }
 
         // GET: Address/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -50,6 +86,27 @@ namespace tutorHut.Controllers
         {
             if (ModelState.IsValid)
             {
+                //get whoever is logged in 
+                //var userID = User.Identity.GetUserId();
+                //get the profile whoever is logged in
+                // this gets all the profile table
+                // UserId is the FK for ApplicationUsers
+                //Profile userProfile = db.Profiles.Where(p => p.UserId == userID).First();
+                // created a address Id
+                //userProfile.AddressId = address.AddressId;
+
+
+                //get the user that's logged in
+                var userId = User.Identity.GetUserId();
+                //get the user's profile
+                Profile userProfile = db.Profiles.Where(p => p.UserId == userId).First();
+                //this user's profile should be this on the address table
+                // ?shouldn't this be in the profile controller?
+                //userProfile.Address.AddressId = address.AddressId;
+
+                address.AddressId = userProfile.ProfileId;
+                userProfile.AddressId = address.AddressId;
+
                 db.Addresses.Add(address);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -59,7 +116,7 @@ namespace tutorHut.Controllers
         }
 
         // GET: Address/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -90,7 +147,7 @@ namespace tutorHut.Controllers
         }
 
         // GET: Address/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -107,7 +164,7 @@ namespace tutorHut.Controllers
         // POST: Address/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
             Address address = db.Addresses.Find(id);
             db.Addresses.Remove(address);

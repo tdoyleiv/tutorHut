@@ -78,7 +78,7 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RestSharp, Version=106.2.1.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
@@ -210,7 +210,6 @@
     <Compile Include="Classes\ZIP.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddressController.cs" />
-    <Compile Include="Controllers\ASNAPIController.cs" />
     <Compile Include="Controllers\EducationLevelController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -222,14 +221,21 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201801161050231_NewTables.cs" />
-    <Compile Include="Migrations\201801161050231_NewTables.Designer.cs">
-      <DependentUpon>201801161050231_NewTables.cs</DependentUpon>
+    <Compile Include="Migrations\201801162059067_AddNewTable.cs" />
+    <Compile Include="Migrations\201801162059067_AddNewTable.Designer.cs">
+      <DependentUpon>201801162059067_AddNewTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801162232121_nullable address id.cs" />
+    <Compile Include="Migrations\201801162232121_nullable address id.Designer.cs">
+      <DependentUpon>201801162232121_nullable address id.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801162324501_nullable address.cs" />
+    <Compile Include="Migrations\201801162324501_nullable address.Designer.cs">
+      <DependentUpon>201801162324501_nullable address.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
-    <Compile Include="Models\ASNAPI.cs" />
     <Compile Include="Models\EducationLevel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -303,16 +309,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
-    <Content Include="Views\EducationLevel\Create.cshtml" />
-    <Content Include="Views\EducationLevel\Delete.cshtml" />
-    <Content Include="Views\EducationLevel\Details.cshtml" />
-    <Content Include="Views\EducationLevel\Edit.cshtml" />
-    <Content Include="Views\EducationLevel\Index.cshtml" />
-    <Content Include="Views\Profile\Create.cshtml" />
-    <Content Include="Views\Profile\Delete.cshtml" />
-    <Content Include="Views\Profile\Details.cshtml" />
-    <Content Include="Views\Profile\Edit.cshtml" />
-    <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\ASNAPI\Index.cshtml" />
     <Content Include="Views\Address\Create.cshtml" />
     <Content Include="Views\Address\Delete.cshtml" />
     <Content Include="Views\Address\Details.cshtml" />
@@ -323,12 +320,21 @@
     <Content Include="Views\Request\Details.cshtml" />
     <Content Include="Views\Request\Edit.cshtml" />
     <Content Include="Views\Request\Index.cshtml" />
+    <Content Include="Views\Profile\Create.cshtml" />
+    <Content Include="Views\Profile\Delete.cshtml" />
+    <Content Include="Views\Profile\Details.cshtml" />
+    <Content Include="Views\Profile\Edit.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Subject\Create.cshtml" />
     <Content Include="Views\Subject\Delete.cshtml" />
     <Content Include="Views\Subject\Details.cshtml" />
     <Content Include="Views\Subject\Edit.cshtml" />
     <Content Include="Views\Subject\Index.cshtml" />
-    <Content Include="Views\ASNAPI\Index.cshtml" />
+    <Content Include="Views\EducationLevel\Create.cshtml" />
+    <Content Include="Views\EducationLevel\Delete.cshtml" />
+    <Content Include="Views\EducationLevel\Details.cshtml" />
+    <Content Include="Views\EducationLevel\Edit.cshtml" />
+    <Content Include="Views\EducationLevel\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -342,8 +348,14 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201801161050231_NewTables.resx">
-      <DependentUpon>201801161050231_NewTables.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201801162059067_AddNewTable.resx">
+      <DependentUpon>201801162059067_AddNewTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801162232121_nullable address id.resx">
+      <DependentUpon>201801162232121_nullable address id.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801162324501_nullable address.resx">
+      <DependentUpon>201801162324501_nullable address.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

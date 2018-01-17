@@ -11,21 +11,22 @@ namespace tutorHut.Models
     public class Profile
     {
         [Key]
-        public string ProfileId { get; set; }
+        public int ProfileId { get; set; }
 
         public string UserId { get; set; }
         [ForeignKey("UserId")]
         public ApplicationUser ApplicationUser { get; set; }
       
-        public string AddressId { get; set; }
+        // ? allows null for FK
+        public int? AddressId { get; set; }
         [ForeignKey("AddressId")]
         public Address Address { get; set; }
 
-        public string SubjectId { get; set; }
+        public int? SubjectId { get; set; }
         [ForeignKey("SubjectId")]
         public Subject Subject { get; set; }
 
-        public string RequestId { get; set; }
+        public int? RequestId { get; set; }
         [ForeignKey("RequestId")]
         public Request Request { get; set; }
 

@@ -20,9 +20,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Request.Status)
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.Subject.EducationLevelId)
-        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Subject.SubjectName)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.ProfileFirstName)
         </th>
@@ -52,9 +52,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.Request.Status)
         </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Subject.EducationLevelId)
-        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Subject.SubjectName)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.ProfileFirstName)
         </td>

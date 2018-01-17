@@ -12,7 +12,7 @@ namespace tutorHut.Models
     public class Request
     {
         [Key]
-        public string RequestId { get; set; }
+        public int RequestId { get; set; }
 
         //public string AddressId { get; set; }
         //[ForeignKey("AddressId")]

@@ -33,11 +33,12 @@ namespace tutorHut.Models
 
         public DbSet<Request> Requests { get; set; }
 
+        public DbSet<EducationLevel> EducationLevels { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<tutorHut.Models.EducationLevel> EducationLevels { get; set; }
     }
 }

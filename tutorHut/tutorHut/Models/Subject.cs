@@ -11,13 +11,13 @@ namespace tutorHut.Models
     public class Subject
     {
         [Key]
-        public string SubjectID { get; set; }
+        public int SubjectID { get; set; }
 
         //public string UserId { get; set; }
         //[ForeignKey("UserId")]
         //public ApplicationUser ApplicationUser { get; set; }
 
-        public string EducationLevelId { get; set; }
+        public int? EducationLevelId { get; set; }
         [ForeignKey("EducationLevelId")]
         public EducationLevel EducationLevel { get; set; }
 
