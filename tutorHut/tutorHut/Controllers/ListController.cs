@@ -15,9 +15,18 @@ namespace tutorHut.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: List
-        public ActionResult Index()
+        // added string searchString
+        public ActionResult Index(string searchString)
         {
             var profiles = db.Profiles.Include(p => p.Address).Include(p => p.ApplicationUser).Include(p => p.Request).Include(p => p.Subject);
+
+            //addded if statement
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                profiles = profiles.Where(p => p.Subject.SubjectName.Contains(searchString));
+            }
+            
+
             return View(profiles.ToList());
         }
 

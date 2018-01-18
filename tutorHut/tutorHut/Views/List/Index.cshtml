@@ -9,10 +9,32 @@
 @*<p>
     @Html.ActionLink("Create New", "Create")
 </p>*@
+
+<p>
+
+    @*add this code*@
+
+    
+        @using (Html.BeginForm())
+        {
+        <p>
+            Subject: @Html.TextBox("SearchString") <br />
+            <input type="submit" value="Filter" />
+        </p>
+        }
+    
+
+</p>
+
+
+
 <table class="table">
     <tr>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Address.StreetAddress)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Address.ZipCode)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ApplicationUser.Email)
@@ -43,8 +65,11 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Address.StreetAddress)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Address.ZipCode)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
