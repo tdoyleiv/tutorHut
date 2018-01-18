@@ -15,7 +15,7 @@ namespace tutorHut.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Profile
+        // GET:  Profile
         public ActionResult Index()
         {
             var userId = User.Identity.GetUserId();
