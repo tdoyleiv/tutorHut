@@ -234,6 +234,10 @@
     <Compile Include="Migrations\201801162324501_nullable address.Designer.cs">
       <DependentUpon>201801162324501_nullable address.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801180140210_emptyMigration.cs" />
+    <Compile Include="Migrations\201801180140210_emptyMigration.Designer.cs">
+      <DependentUpon>201801180140210_emptyMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
@@ -362,6 +366,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801162324501_nullable address.resx">
       <DependentUpon>201801162324501_nullable address.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801180140210_emptyMigration.resx">
+      <DependentUpon>201801180140210_emptyMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
