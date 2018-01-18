@@ -1,0 +1,90 @@
+﻿@model tutorHut.Models.Profile
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Profile</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Address.StreetAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address.StreetAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationUser.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUser.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Request.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Request.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Subject.SubjectName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subject.SubjectName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfileFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProfileFirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfileLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProfileLastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfilePhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProfilePhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HourlyRate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HourlyRate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MyDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MyDescription)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProfileId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

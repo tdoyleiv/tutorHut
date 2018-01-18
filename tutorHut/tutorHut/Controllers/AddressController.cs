@@ -35,6 +35,7 @@ namespace tutorHut.Controllers
             // [ 2 ]
             var userID = User.Identity.GetUserId();
             Profile userProfile = db.Profiles.Where(p => p.UserId == userID).First();
+            //Profile userProfile = db.Profiles.Where(p => p.UserId == userID);
             // [ 2 ] end
 
             //address id is the id that matchs the user's profile

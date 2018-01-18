@@ -336,10 +336,14 @@
     <Content Include="Views\EducationLevel\Details.cshtml" />
     <Content Include="Views\EducationLevel\Edit.cshtml" />
     <Content Include="Views\EducationLevel\Index.cshtml" />
+    <Content Include="Views\List\Create.cshtml" />
+    <Content Include="Views\List\Delete.cshtml" />
+    <Content Include="Views\List\Details.cshtml" />
+    <Content Include="Views\List\Edit.cshtml" />
+    <Content Include="Views\List\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\List\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
