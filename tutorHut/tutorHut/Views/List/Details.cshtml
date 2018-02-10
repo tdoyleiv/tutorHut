@@ -10,13 +10,13 @@
     <h4>Profile</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.Address.StreetAddress)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Address.StreetAddress)
-        </dd>
+        </dd>*@
 
         <dt>
             @Html.DisplayNameFor(model => model.ApplicationUser.Email)
@@ -26,13 +26,13 @@
             @Html.DisplayFor(model => model.ApplicationUser.Email)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.Request.Status)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Request.Status)
-        </dd>
+        </dd>*@
 
         <dt>
             @Html.DisplayNameFor(model => model.Subject.SubjectName)
@@ -58,13 +58,13 @@
             @Html.DisplayFor(model => model.ProfileLastName)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.ProfilePhoneNumber)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.ProfilePhoneNumber)
-        </dd>
+        </dd>*@
 
         <dt>
             @Html.DisplayNameFor(model => model.HourlyRate)
@@ -85,6 +85,15 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ProfileId }) |
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.ProfileId }) |*@
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+@using (Html.BeginForm("Details", "List", FormMethod.Post, new { @class = "Form-Horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    <div class="form-group">
+        <div class="col-md-12">
+            <input type="submit" value="Request Information" class="btn btn-default"  />
+        </div>
+    </div>
+}

@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using tutorHut.Models;
@@ -30,6 +31,9 @@ namespace tutorHut.Controllers
             return View(profiles.ToList());
         }
 
+
+
+
         // GET: List/Details/5
         public ActionResult Details(int? id)
         {
@@ -37,13 +41,88 @@ namespace tutorHut.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Profile profile = db.Profiles.Find(id);
+
+
+            //Profile profile = db.Profiles.Find(id);
+
+            //new code
+            Profile profile = db.Profiles.Include(d => d.Subject).Include(d => d.ApplicationUser).Where(d => d.ProfileId == id).First();
+
+            //this code works!
+            //DonationBox donationBoxes = db.DonationBoxes.Include(d => d.ApplicationUser).Include(d => d.DonationBoxCategory).Where(n => n.DonationBoxId == id).First();
+
+
             if (profile == null)
             {
                 return HttpNotFound();
             }
             return View(profile);
         }
+
+
+
+        //new code
+        //POST
+        [HttpPost]
+        public ActionResult Details()
+        {
+
+            //new code to send email
+            if (ModelState.IsValid)
+            {
+
+                string linkName = "REPLY";
+                string text = "A student wishes to obtain your contact information. Please click on the link to accept or deny this request";
+
+
+                string email = "LanceYang15@gmail.com";               
+                string subject = "Request Information";
+                string link = "<html><body><a href='http://localhost:65515/Reply\'>" + linkName + "</a></body></html>";
+
+
+                link += text;
+
+
+                MailGun.SendSimpleMessage(email, subject, link);
+
+
+                return RedirectToAction("Index");
+
+            }
+
+
+            return View();
+            //return Content(result);
+        }
+
+
+        //====
+
+
+
+
+        //new code ====
+
+        //GET
+        //public ActionResult AcceptOrDecline()
+        //{
+        //    return View();
+        //}
+
+
+        ////POST
+        //[HttpPost]
+        //public ActionResult AcceptOrDecline([Bind(Include = "ProfileId,UserId,AddressId,SubjectId,RequestId,ProfileFirstName,ProfileLastName,ProfilePhoneNumber,HourlyRate,MyDescription")] Profile profile)
+        //{
+
+
+        //    return View();
+        //}
+
+        //==== [ END ] 
+
+
+
 
         // GET: List/Create
         public ActionResult Create()

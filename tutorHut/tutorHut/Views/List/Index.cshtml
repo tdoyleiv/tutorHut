@@ -51,9 +51,9 @@
         <th>
             @Html.DisplayNameFor(model => model.ProfileLastName)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.ProfilePhoneNumber)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.HourlyRate)
         </th>
@@ -86,19 +86,22 @@
         <td>
             @Html.DisplayFor(modelItem => item.ProfileLastName)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.ProfilePhoneNumber)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.HourlyRate)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.MyDescription)
         </td>
-        @*<td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ProfileId }) |
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.ProfileId }) |*@
             @Html.ActionLink("Details", "Details", new { id=item.ProfileId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ProfileId })
+        </td>
+        @*<td>
+            @Html.ActionLink("Details", "Details", new { id=item.ProfileId })
         </td>*@
     </tr>
 }
