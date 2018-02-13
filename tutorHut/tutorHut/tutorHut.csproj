@@ -219,6 +219,7 @@
     <Compile Include="Controllers\RequestController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
+    <Compile Include="Controllers\TutorController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -350,6 +351,7 @@
     <Content Include="Views\Reply\Index.cshtml" />
     <Content Include="Views\Reply\Accept.cshtml" />
     <Content Include="Views\Reply\Deny.cshtml" />
+    <Content Include="Views\Tutor\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -66,13 +67,21 @@ namespace tutorHut.Controllers
         [HttpPost]
         public ActionResult Details()
         {
+            //new code 2/13 obtain user login          
+            var userId = User.Identity.GetUserId();
+            //new code 2/13 obtain user login table for email
+            ApplicationUser user = db.Users.Where(d => d.Id == userId).First();
+
 
             //new code to send email
             if (ModelState.IsValid)
             {
+                // 2/13
+                string userEmail = user.Email;
 
                 string linkName = "REPLY";
-                string text = "A student wishes to obtain your contact information. Please click on the link to accept or deny this request";
+                //string text = "A student/parent wishes to obtain your contact information. Please click on the link to accept or deny this request";
+                string text = "\n\n" + userEmail.ToString() + " \n\nwishes to obtain your contact information. Please click on the REPLY link above to accept or deny this request";
 
 
                 string email = "LanceYang15@gmail.com";               
