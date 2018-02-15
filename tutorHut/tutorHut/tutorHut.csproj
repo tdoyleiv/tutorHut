@@ -204,13 +204,12 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Classes\City.cs" />
-    <Compile Include="Classes\State.cs" />
-    <Compile Include="Classes\Street.cs" />
-    <Compile Include="Classes\ZIP.cs" />
+    <Compile Include="Classes\API.cs" />
+    <Compile Include="Classes\Helper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddressController.cs" />
     <Compile Include="Controllers\EducationLevelController.cs" />
+    <Compile Include="Controllers\GoogleMapsAPIController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -244,6 +243,8 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\EducationLevel.cs" />
+    <Compile Include="Models\GoogleMapsGeocoder.cs" />
+    <Compile Include="Models\GoogleMapsPlaceAPI.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\MailGun.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -317,7 +318,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
-    <Content Include="Views\ASNAPI\Index.cshtml" />
     <Content Include="Views\Address\Create.cshtml" />
     <Content Include="Views\Address\Delete.cshtml" />
     <Content Include="Views\Address\Details.cshtml" />
@@ -355,6 +355,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\GoogleMapsAPI\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
