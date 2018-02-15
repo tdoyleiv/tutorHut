@@ -352,10 +352,10 @@
     <Content Include="Views\Reply\Accept.cshtml" />
     <Content Include="Views\Reply\Deny.cshtml" />
     <Content Include="Views\Tutor\Index.cshtml" />
+    <Content Include="Views\GoogleMapsAPI\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\GoogleMapsAPI\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
