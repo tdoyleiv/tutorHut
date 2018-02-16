@@ -1,7 +1,8 @@
-﻿@{ tutorHut.Models.GoogleMapsPlaceAPI}
-@*@{
+﻿
+@model tutorHut.Models.GoogleMapsPlaceAPI
+@{
     ViewBag.Title = "Meetups";
-}*@
+}
 
 <h2>Our suggested meetup locations</h2>
 <head>
@@ -12,7 +13,7 @@
         /* Always set the map height explicitly to define the size of the div
         * element that contains the map. */
         #map {
-            height: 100%;
+            height: 100vh;
         }
         /* Optional: Makes the sample page fill the window. */
         html, body {
@@ -22,6 +23,7 @@
         }
     </style>
 </head>
+
 <div style="background-color:  #5499c7 !important;" class="jumbotron">
     <div id="map"></div>
     <script>
@@ -116,3 +118,22 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4HZBFwtooq_F6z1cy8g7K9vAoVLP2qWE&callback=initMap"
             async defer></script>
 </div>
+
+
+@*@using (Html.BeginForm("Index", "GoogleMapsAPI", FormMethod.Post, new { @class = "Form-Horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    <div class="form-group">
+        <div class="col-sm-12">
+            <input class="form-control" type="text" name="inputAddress" placeholder="Enter your address" />
+        </div>
+        <div class="col-sm-12 myMargin mySize">
+            <input class="form-control" type="text" name="inputCity" placeholder="Enter your city" />
+        </div>
+        <div class="col-sm-12 myMargin mySize">
+            <input class="form-control" type="text" name="inputState" placeholder="Enter your state" />
+        </div>
+        <div class="col-sm-12">
+            <input type="submit" value="Google Search" class="btn btn-default" />
+        </div>
+    </div>
+}*@
