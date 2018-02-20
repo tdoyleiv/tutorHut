@@ -4,136 +4,168 @@
     ViewBag.Title = "Meetups";
 }
 
-<h2>Our suggested meetup locations</h2>
-<head>
-    <title>Styled Maps - Night Mode</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <style>
-        /* Always set the map height explicitly to define the size of the div
-        * element that contains the map. */
-        #map {
-            height: 100vh;
-        }
-        /* Optional: Makes the sample page fill the window. */
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-    </style>
-</head>
+<style>
+    #map {
+        height: 400px;
+        width: 100%;
+    }
+</style>
 
-<div style="background-color:  #5499c7 !important;" class="jumbotron">
-    <div id="map"></div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+<h2 id="text-center">Enter Location: </h2>
+<form id="location-form">
+    <input type="text" id="location-input" class="form-control" />
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+@*for the geocode*@
+@*<div id="formatted-address"></div>
+    <div id="address-components"></div>
+    <div id="geometry"></div>*@
+
+@*for the map*@
+<div id="map"></div>
+
+
+<div class="container">
+
     <script>
-            function initMap() {
-                // Styles a map in night mode.
-                var map = new google.maps.Map(document.getElementById('map'), {
-                    center: { lat: 40.674, lng: -73.945 },
-                    zoom: 12,
-                    styles: [
-                      { elementType: 'geometry', stylers: [{ color: '#242f3e' }] },
-                      { elementType: 'labels.text.stroke', stylers: [{ color: '#242f3e' }] },
-                      { elementType: 'labels.text.fill', stylers: [{ color: '#746855' }] },
-                      {
-                          featureType: 'administrative.locality',
-                          elementType: 'labels.text.fill',
-                          stylers: [{ color: '#d59563' }]
-                      },
-                      {
-                          featureType: 'poi',
-                          elementType: 'labels.text.fill',
-                          stylers: [{ color: '#d59563' }]
-                      },
-                      {
-                          featureType: 'poi.park',
-                          elementType: 'geometry',
-                          stylers: [{ color: '#263c3f' }]
-                      },
-                      {
-                          featureType: 'poi.park',
-                          elementType: 'labels.text.fill',
-                          stylers: [{ color: '#6b9a76' }]
-                      },
-                      {
-                          featureType: 'road',
-                          elementType: 'geometry',
-                          stylers: [{ color: '#38414e' }]
-                      },
-                      {
-                          featureType: 'road',
-                          elementType: 'geometry.stroke',
-                          stylers: [{ color: '#212a37' }]
-                      },
-                      {
-                          featureType: 'road',
-                          elementType: 'labels.text.fill',
-                          stylers: [{ color: '#9ca5b3' }]
-                      },
-                      {
-                          featureType: 'road.highway',
-                          elementType: 'geometry',
-                          stylers: [{ color: '#746855' }]
-                      },
-                      {
-                          featureType: 'road.highway',
-                          elementType: 'geometry.stroke',
-                          stylers: [{ color: '#1f2835' }]
-                      },
-                      {
-                          featureType: 'road.highway',
-                          elementType: 'labels.text.fill',
-                          stylers: [{ color: '#f3d19c' }]
-                      },
-                      {
-                          featureType: 'transit',
-                          elementType: 'geometry',
-                          stylers: [{ color: '#2f3948' }]
-                      },
-                      {
-                          featureType: 'transit.station',
-                          elementType: 'labels.text.fill',
-                          stylers: [{ color: '#d59563' }]
-                      },
-                      {
-                          featureType: 'water',
-                          elementType: 'geometry',
-                          stylers: [{ color: '#17263c' }]
-                      },
-                      {
-                          featureType: 'water',
-                          elementType: 'labels.text.fill',
-                          stylers: [{ color: '#515c6d' }]
-                      },
-                      {
-                          featureType: 'water',
-                          elementType: 'labels.text.stroke',
-                          stylers: [{ color: '#17263c' }]
-                      }
-                    ]
-                });
+
+        // variables
+        var map;
+        var marker;
+        var infowindow;
+
+        // get location form
+        var locationForm = document.getElementById('location-form');
+
+
+        // listen for submit button
+        locationForm.addEventListener('submit', geocode);
+
+
+        function initMap(latitude, longitude) {
+
+            var options = {
+                zoom: 14,
+                center: { lat: latitude, lng: longitude }// default set location
+            };
+
+            var request = {
+                location: { lat: latitude, lng: longitude },
+                radius: 5000,
+                types: ['school']
+            };
+
+
+            // create the map
+            map = new google.maps.Map(document.getElementById('map'), options);
+
+            //create the info window
+            infowindow = new google.maps.InfoWindow();
+
+            // obtain nearby places
+            var service = new google.maps.places.PlacesService(map);
+            service.nearbySearch(request, callback);
+
+
+            // marker based on location
+            marker = new google.maps.Marker({
+                position: { lat: latitude, lng: longitude },
+                map: map,
+                icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+            });
+
+        }
+
+
+        function callback(results, status) {
+            if (status == google.maps.places.PlacesServiceStatus.OK) {
+                for (var i = 0; i < results.length; i++) {
+                    createMarker(results[i]);
+                }
             }
+        }
+
+
+        function createMarker(place) {
+            //var placeLoc = place.geometry.location;
+            var markerPlaceLoc = new google.maps.Marker({
+                position: place.geometry.location,
+                map: map
+            });
+
+            google.maps.event.addListener(markerPlaceLoc, 'click', function () {
+                infowindow.setContent(place.name);
+                infowindow.open(map, this);
+            });
+        }
+
+
+
+        // for the geocode
+        function geocode(e) {
+            // prevent actual submit
+            e.preventDefault();
+
+
+        var location = document.getElementById('location-input').value;
+
+        axios.get('https://maps.googleapis.com/maps/api/geocode/json',
+            {
+                params: {
+                    address: location,
+                    key: 'AIzaSyC4HZBFwtooq_F6z1cy8g7K9vAoVLP2qWE'
+                }
+            })
+            .then(function(response) {
+                // log full response
+                console.log(response);
+
+
+                // formatted address
+                var formattedAddress = response.data.results[0].formatted_address;
+                var formattedAddressOutput = `<ul class="list-group"><li class="list-group-item">${formattedAddress}</li></ul>`;
+
+
+                // address components
+                var addressComponents = response.data.results[0].address_components;
+                var addressComponentsOutput = `<ul class="list-group">`;
+                for (var i = 0; i < addressComponents.length; i++){
+                    addressComponentsOutput += `<li class="list-group-item"><strong>${addressComponents[i].types[0]}</strong>: ${addressComponents[i].long_name}</li>`;
+                }
+                addressComponentsOutput += `</ul>`;
+
+
+                // Geometry
+                var latt = response.data.results[0].geometry.location.lat;
+                var lngg = response.data.results[0].geometry.location.lng;
+
+
+                // call map maker function
+                initMap(latt, lngg);
+
+
+                var geometryOutput = `<ul class="list-group"><li class="list-group-item"><strong>Latitude</strong>:${latt}</li><li class="list-group-item"><strong>Longitude</strong>:${lngg}</li></ul>`;
+
+
+                // Output to app
+                document.getElementById('formatted-address').innerHTML = formattedAddressOutput;
+                document.getElementById('address-components').innerHTML = addressComponentsOutput;
+                document.getElementById('geometry').innerHTML = geometryOutput;
+            })
+            .catch(function(error){
+                console.log(error)
+            });
+    }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4HZBFwtooq_F6z1cy8g7K9vAoVLP2qWE&callback=initMap"
-            async defer></script>
+
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4HZBFwtooq_F6z1cy8g7K9vAoVLP2qWE&libraries=places">
+    </script>
+
 </div>
 
-
-@*@using (Html.BeginForm("Index", "GoogleMapsAPI", FormMethod.Post, new { @class = "Form-Horizontal", role = "form", enctype = "multipart/form-data" }))
-{
-    <div class="form-group">
-        <div class="col-sm-12">
-            <input class="form-control" type="text" name="inputAddress" placeholder="Enter your address" />
-        </div>
-        <div class="col-sm-12 myMargin mySize">
-            <input class="form-control" type="text" name="inputCity" placeholder="Enter your city" />
-        </div>
-        <div class="col-sm-12 myMargin mySize">
-            <input class="form-control" type="text" name="inputState" placeholder="Enter your state" />
-        </div>
-        <div class="col-sm-12">
-            <input type="submit" value="Google Search" class="btn btn-default" />
-        </div>
-    </div>
-}*@
