@@ -15,7 +15,8 @@ namespace tutorHut.Controllers
             return View();
         }
 
-        //POST 
+        //POST
+        // when you press the button it does this
         [HttpPost]
         public ActionResult Index(string parentEmail, string message)
         {

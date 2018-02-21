@@ -18,6 +18,7 @@ namespace tutorHut.Controllers
         // GET: GoogleMapsAPI
         public ActionResult Index()
         {
+<<<<<<< HEAD
             var userId = User.Identity.GetUserId();
             var address = LogicConversionOne((db.Addresses.Where(m => m.UserId == userId).Include(m => m.StreetAddress)).ToString());
             var city = LogicConversionTwo((db.Addresses.Where(m => m.UserId == userId).Include(m => m.City)).ToString());
@@ -56,5 +57,21 @@ namespace tutorHut.Controllers
             }
             return array.ToString();
         }
+=======
+            
+            return View();
+        }
+
+        // POST 
+        //public ActionResult Index(string blank)
+        //{
+        //    return View();
+        //}
+
+
+
+
+
+>>>>>>> f0d63c99ff08f13aa817c2cdf56be49d1a4f8ca7
     }
 }
