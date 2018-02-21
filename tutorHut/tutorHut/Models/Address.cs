@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace tutorHut.Models
 {
@@ -13,9 +14,10 @@ namespace tutorHut.Models
         [Key]
         public int AddressId { get; set; }
 
-        //public string UserId { get; set; }
-        //[ForeignKey("UserId")]
-        //public ApplicationUser ApplicationUser { get; set; }
+        [HiddenInput(DisplayValue = false)]
+        public string UserId { get; set; }
+        [ForeignKey("UserId")]
+        public ApplicationUser ApplicationUser { get; set; }
 
         [Display(Name = "Street Address")]
         public string StreetAddress { get; set; }
