@@ -24,14 +24,7 @@ namespace tutorHut.Controllers
 
             profiles = db.Profiles.Where(p => p.UserId == userId).Include(p => p.Address).Include(p => p.ApplicationUser).Include(p => p.Subject);
 
-            //2/var userId = User.Identity.GetUserId();
-
-            //serch for the correct profile
-            //2/var profileId = db.Profiles.Where(p => p.UserId == userId);
-
-            //return View(profiles.ToList());
             return View(profiles);
-            //2/return View(profileId);
         }
 
         // GET: Profile/Details/5
@@ -66,41 +59,16 @@ namespace tutorHut.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ProfileId,UserId,AddressId,SubjectId,RequestId,ProfileFirstName,ProfileLastName,ProfilePhoneNumber,HourlyRate,MyDescription")] Profile profile)
         {
-            //get user id
-            //var UserId = User.Identity.GetUserId();
-            //profile.UserId = UserId;
 
-            //obtain the user's id
             var userId = User.Identity.GetUserId();
-            //set user's id to FK UserID in Profile
             profile.UserId = userId;
             
-
-            //create a Address with an Id
-            // connect address id with profile id
-            // I want AddressId to be populated with Profile Id
-            //var address = db.Addresses.Include(a => a.AddressId);
-            //Address address1;
-            //address1.AddressId = profile.ProfileId;
-            //profile.AddressId = address1.AddressId;
-            //address1.AddressId = profile.AddressId;
-
-            //Address address = db.Addresses.Include(a => a.AddressId == ProfileId);
-
-            //profile.Address.AddressId = address.AddressId;
-
             if (ModelState.IsValid)
             {
                 db.Profiles.Add(profile);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            //drop down list
-            //ViewBag.AddressId = new SelectList(db.Addresses, "AddressId", "StreetAddress", profile.AddressId);
-            //ViewBag.UserId = new SelectList(db.Users, "Id", "Email", profile.UserId);
-            //ViewBag.RequestId = new SelectList(db.Requests, "RequestId", "Status", profile.RequestId);
-            //ViewBag.SubjectId = new SelectList(db.Subjects, "SubjectID", "SubjectName", profile.SubjectId);
 
             return View(profile);
         }

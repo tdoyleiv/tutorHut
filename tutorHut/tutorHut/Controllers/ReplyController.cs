@@ -21,7 +21,6 @@ namespace tutorHut.Controllers
         public ActionResult Index()
         {
             string id = User.Identity.GetUserId();
-            //Profile profile = db.Profiles.Include(d => d.ApplicationUser).Where(d => d.ProfileId.ToString() == id).First();
 
             return View();
         }
@@ -30,17 +29,6 @@ namespace tutorHut.Controllers
         [HttpPost]
         public ActionResult Index(string accept, bool deny)
         {
-
-            //get the signed on id
-            //string id = User.Identity.GetUserId();
-
-            //need to obtain user information to send with email
-            // obtain email, name: first and last, and phone number
-            //Tables needed :  AspNetUser, Profiles
-            //Profile profile = db.Profiles.Include(d => d.ApplicationUser).Where(d => d.ProfileId.ToString() == id).First();
-
-            //DonationBox donationBoxes = db.DonationBoxes.Include(d => d.ApplicationUser).Include(d => d.DonationBoxCategory).Where(n => n.DonationBoxId == id).First();
-
 
             if (ModelState.IsValid)
             {

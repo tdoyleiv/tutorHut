@@ -13,10 +13,6 @@ namespace tutorHut.Models
         [Key]
         public int EducationLevelId { get; set; }
 
-        //public string UserId { get; set; }
-        //[ForeignKey("UserId")]
-        //public ApplicationUser ApplicationUser { get; set; }
-
         [Display(Name = "Level Type")]
         public string LevelType { get; set; }
     }

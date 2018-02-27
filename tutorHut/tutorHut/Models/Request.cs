@@ -14,22 +14,6 @@ namespace tutorHut.Models
         [Key]
         public int RequestId { get; set; }
 
-        //public string AddressId { get; set; }
-        //[ForeignKey("AddressId")]
-        //public Address Address { get; set; }
-
-        //public string UserId { get; set; }
-        //[ForeignKey("UserId")]
-        //public ApplicationUser ApplicationUser { get; set; }
-
-        //public string SubjectId { get; set; }
-        //[ForeignKey("SubjectId")]
-        //public Subject Subject { get; set; }
-
-        //public string ProfileId { get; set; }
-        //[ForeignKey("ProfileId")]
-        //public Profile Profile { get; set; }
-
         [Display(Name = "Date And Time")]
         public DateTime DateAndTime { get; set; }
 
