@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
+using tutorHut.Classes;
 using tutorHut.Models;
 
 namespace tutorHut.Controllers
@@ -60,6 +61,7 @@ namespace tutorHut.Controllers
             var userId = User.Identity.GetUserId();
             ApplicationUser user = db.Users.Where(d => d.Id == userId).First();
 
+            Hidden hide = new Hidden();
 
             if (ModelState.IsValid)
             {
@@ -67,7 +69,7 @@ namespace tutorHut.Controllers
                 string userEmail = user.Email;
                 string linkName = "REPLY";
                 string text = "\n\n" + userEmail.ToString() + " \n\nwishes to obtain your contact information. Please click on the REPLY link above to accept or deny this request";
-                string email = "LanceYang15@gmail.com";               
+                string email = hide.Email;               
                 string subject = "Request Information";
                 string link = "<html><body><a href='http://localhost:65515/Reply\'>" + linkName + "</a></body></html>";
 

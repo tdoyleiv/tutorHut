@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using tutorHut.Classes;
 using tutorHut.Models;
 
 namespace tutorHut.Controllers
 {
     public class TutorController : Controller
     {
+        Hidden hide = new Hidden();
+
         // GET: Tutor
         public ActionResult Index()
         {
@@ -21,7 +24,7 @@ namespace tutorHut.Controllers
         public ActionResult Index(string parentEmail, string message)
         {
 
-            string email = "LanceYang15@gmail.com";
+            string email = hide.Email;
             string subject = "Tutor Update";
             string link = message;
 
