@@ -20,11 +20,5 @@ namespace tutorHut.Controllers
         {            
             return View();
         }
-
-        // POST 
-        //public ActionResult Index(string blank)
-        //{
-        //    return View();
-        //}
     }
 }

@@ -18,32 +18,10 @@ namespace tutorHut.Controllers
         // GET: Address
         public ActionResult Index()
         {
-            // [ 1 ]
-            //var Addresses = db.Addresses.Include(a => a.AddressId);
-            // [ 1 ] End
 
-            //obtain logged in ID
-            //var UserId = User.Identity.GetUserId();
-            //var profile = db.Profiles.Where(p => p.UserId == UserId).First();
-
-            //get user id
-            //var userID = User.Identity.GetUserId();
-            //get the profile that corrolates to that id
-            //Profile userProfile = db.Profiles.Where(p => p.UserId == userID).First();
-            //userProfile.AddressId = address.AddressId;
-
-            // [ 2 ]
             var userID = User.Identity.GetUserId();
             Profile userProfile = db.Profiles.Where(p => p.UserId == userID).First();
-            //Profile userProfile = db.Profiles.Where(p => p.UserId == userID);
-            // [ 2 ] end
 
-            //address id is the id that matchs the user's profile
-            // this doesn't exist yet
-            //  - create it in the profile controller
-            //
-
-            //[ 2 ]
             try
             {
                 var Address = db.Addresses.Include(a => a.AddressId == userProfile.AddressId);
@@ -53,14 +31,7 @@ namespace tutorHut.Controllers
             {
                 return RedirectToAction("Create");
             }
-            //[ 2 ] End
 
-            // [ 1 ] 
-            //return View(db.Addresses.ToList());
-            // [ 1 ] End
-
-            //return View(userProfile.Address);
-            //return View(Address);
         }
 
         // GET: Address/Details/5
@@ -93,30 +64,14 @@ namespace tutorHut.Controllers
         {
             if (ModelState.IsValid)
             {
-                //get whoever is logged in 
-                //var userID = User.Identity.GetUserId();
-                //get the profile whoever is logged in
-                // this gets all the profile table
-                // UserId is the FK for ApplicationUsers
-                //Profile userProfile = db.Profiles.Where(p => p.UserId == userID).First();
-                // created a address Id
-                //userProfile.AddressId = address.AddressId;
 
-
-                //get the user that's logged in
                 var userId = User.Identity.GetUserId();
-                //get the user's profile
                 Profile userProfile = db.Profiles.Where(p => p.UserId == userId).First();
-                //this user's profile should be this on the address table
-                // ?shouldn't this be in the profile controller?
-                //userProfile.Address.AddressId = address.AddressId;
-
-                //address.AddressId = userProfile.ProfileId;
-                //sets the usrProfile the streetAddress
                 userProfile.AddressId = address.AddressId;
 
                 db.Addresses.Add(address);
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 

@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
+using tutorHut.Classes;
 using tutorHut.Models;
 
 namespace tutorHut.Controllers
@@ -22,7 +23,6 @@ namespace tutorHut.Controllers
         {
             var profiles = db.Profiles.Include(p => p.Address).Include(p => p.ApplicationUser).Include(p => p.Request).Include(p => p.Subject);
 
-            //addded if statement
             if (!String.IsNullOrEmpty(searchString))
             {
                 profiles = profiles.Where(p => p.Subject.SubjectName.Contains(searchString));
@@ -31,8 +31,6 @@ namespace tutorHut.Controllers
 
             return View(profiles.ToList());
         }
-
-
 
 
         // GET: List/Details/5
@@ -44,14 +42,7 @@ namespace tutorHut.Controllers
             }
 
 
-            //Profile profile = db.Profiles.Find(id);
-
-            //new code
             Profile profile = db.Profiles.Include(d => d.Subject).Include(d => d.ApplicationUser).Where(d => d.ProfileId == id).First();
-
-            //this code works!
-            //DonationBox donationBoxes = db.DonationBoxes.Include(d => d.ApplicationUser).Include(d => d.DonationBoxCategory).Where(n => n.DonationBoxId == id).First();
-
 
             if (profile == null)
             {
@@ -66,71 +57,33 @@ namespace tutorHut.Controllers
         //POST
         [HttpPost]
         public ActionResult Details()
-        {
-            //new code 2/13 obtain user login          
+        {       
             var userId = User.Identity.GetUserId();
-            //new code 2/13 obtain user login table for email
             ApplicationUser user = db.Users.Where(d => d.Id == userId).First();
 
+            Hidden hide = new Hidden();
 
-            //new code to send email
             if (ModelState.IsValid)
             {
-                // 2/13
+                
                 string userEmail = user.Email;
-
                 string linkName = "REPLY";
-                //string text = "A student/parent wishes to obtain your contact information. Please click on the link to accept or deny this request";
                 string text = "\n\n" + userEmail.ToString() + " \n\nwishes to obtain your contact information. Please click on the REPLY link above to accept or deny this request";
-
-
-                string email = "LanceYang15@gmail.com";               
+                string email = hide.Email;               
                 string subject = "Request Information";
                 string link = "<html><body><a href='http://localhost:65515/Reply\'>" + linkName + "</a></body></html>";
 
 
                 link += text;
 
-
                 MailGun.SendSimpleMessage(email, subject, link);
-
 
                 return RedirectToAction("Index");
 
             }
 
-
             return View();
-            //return Content(result);
         }
-
-
-        //====
-
-
-
-
-        //new code ====
-
-        //GET
-        //public ActionResult AcceptOrDecline()
-        //{
-        //    return View();
-        //}
-
-
-        ////POST
-        //[HttpPost]
-        //public ActionResult AcceptOrDecline([Bind(Include = "ProfileId,UserId,AddressId,SubjectId,RequestId,ProfileFirstName,ProfileLastName,ProfilePhoneNumber,HourlyRate,MyDescription")] Profile profile)
-        //{
-
-
-        //    return View();
-        //}
-
-        //==== [ END ] 
-
-
 
 
         // GET: List/Create

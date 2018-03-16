@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
+using tutorHut.Classes;
 using tutorHut.Models;
 
 namespace tutorHut.Controllers
@@ -15,13 +16,14 @@ namespace tutorHut.Controllers
     [Authorize]
     public class ReplyController : Controller
     {
+        Hidden hide = new Hidden();
+
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Reply
         public ActionResult Index()
         {
             string id = User.Identity.GetUserId();
-            //Profile profile = db.Profiles.Include(d => d.ApplicationUser).Where(d => d.ProfileId.ToString() == id).First();
 
             return View();
         }
@@ -31,16 +33,7 @@ namespace tutorHut.Controllers
         public ActionResult Index(string accept, bool deny)
         {
 
-            //get the signed on id
-            //string id = User.Identity.GetUserId();
-
-            //need to obtain user information to send with email
-            // obtain email, name: first and last, and phone number
-            //Tables needed :  AspNetUser, Profiles
-            //Profile profile = db.Profiles.Include(d => d.ApplicationUser).Where(d => d.ProfileId.ToString() == id).First();
-
-            //DonationBox donationBoxes = db.DonationBoxes.Include(d => d.ApplicationUser).Include(d => d.DonationBoxCategory).Where(n => n.DonationBoxId == id).First();
-
+            
 
             if (ModelState.IsValid)
             {
@@ -50,7 +43,7 @@ namespace tutorHut.Controllers
 
                 if (acceptButton == "accept")
                 {
-                    string email = "LanceYang15@gmail.com";
+                    string email = hide.Email;
                     string subject = "Request Accepted";
                     //string linkName = "Click me for GOOGLE";
                     //string tutorEmail = profile.ApplicationUser.Email;
@@ -69,7 +62,7 @@ namespace tutorHut.Controllers
 
                 if (deny)
                 {
-                    string email = "LanceYang15@gmail.com";
+                    string email = hide.Email;
                     string subject = "Request Denied";
                     string linkName = "Sorry you have been denied by the tutor.";
                     string link = "<html><body><a href='http://localhost:65515/List\'>" + linkName + "</a></body></html>";
@@ -91,7 +84,7 @@ namespace tutorHut.Controllers
         public ActionResult Accept()
         {
 
-            string email = "LanceYang15@gmail.com";
+            string email = hide.Email;
             string subject = "Request Accepted";
             //string linkName = "Click me for GOOGLE";
             //string tutorEmail = profile.ApplicationUser.Email;
@@ -115,7 +108,7 @@ namespace tutorHut.Controllers
         public ActionResult Deny()
         {
 
-            string email = "LanceYang15@gmail.com";
+            string email = hide.Email;
             string subject = "Request Denied";
             string link = "I'm sorry your request was denied";
 
